@@ -1,6 +1,8 @@
 # config.py HvS Assets app
 import os
 
+app.root_path=abspath(dirname (__file__))
+
 # grabs the folder where the scripts run
 basedir=os.path.abspath(os.path.dirname(__file__))
 

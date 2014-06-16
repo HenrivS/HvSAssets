@@ -28,28 +28,28 @@ def logout():
     flash('You are logged out')
     return redirect(url_for('login'))
 
-    @app.route('/')
-    def home():
-        """Render website's home page."""
-        return render_template('login.html')
+#    @app.route('/')
+#    def home():
+#        """Render website's home page."""
+#        return render_template('login.html')
 
 
-#@app.route ('/', methods=['GET', 'POST'])
-#def login():
-#    error=None
-#    if request.method=='POST':
-#        u=User.query.filter_by(name=request.form['name'],
-#                              password=request.form['password']).first()
-#       if u is None:
-#           error='Invalid username or password'
-#       else:
-#            session['logged_in']=True
-#            session['user_id']=u.id
-#            flash('You are logged in')
-#            return redirect(url_for('assets'))
-#    return render_template("login.html",
-#                           form=LoginForm(request.form),
-#                           error=error)
+@app.route ('/', methods=['GET', 'POST'])
+def login():
+    error=None
+    if request.method=='POST':
+        u=User.query.filter_by(name=request.form['name'],
+                              password=request.form['password']).first()
+        if u is None:
+           error='Invalid username or password'
+        else:
+            session['logged_in']=True
+            session['user_id']=u.id
+            flash('You are logged in')
+            return redirect(url_for('assets'))
+    return render_template("login.html",
+                           form=LoginForm(request.form),
+                           error=error)
 
 @app.route ('/assets/')
 @login_required
